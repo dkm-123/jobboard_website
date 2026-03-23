@@ -189,30 +189,42 @@ def all_recruiters(request):
     return render(request, 'all_recruiters.html', {'recruiters': recruiters})
 def changepassword_admin(request):
     if request.method == "POST":
-        old_password = request.POST.get('old_password')
-        new_password = request.POST.get('new_password')
-        confirm_password = request.POST.get('confirm_password')
+        old = request.POST.get('old_password')
+        new = request.POST.get('newpassword')
+        confirm = request.POST.get('confirmpassword')
 
         user = request.user
 
-        # Check old password
-        if not user.check_password(old_password):
+        if not user.check_password(old):
             messages.error(request, "Old password is incorrect")
-            return redirect('changepassword_admin')
 
-        # Check new password match
-        if new_password != confirm_password:
-            messages.error(request, "New passwords do not match")
-            return redirect('changepassword_admin')
+        elif new != confirm:
+            messages.error(request, "Passwords do not match")
 
-        # Set new password
-        user.set_password(new_password)
-        user.save()
-
-        # Keep user logged in
-        update_session_auth_hash(request, user)
-
-        messages.success(request, "Password changed successfully")
-        return redirect('admin_home')
+        else:
+            user.set_password(new)
+            user.save()
+            messages.success(request, "Password changed successfully")
 
     return render(request, 'changepassword_admin.html')
+
+def changepassword_jobseeker(request):
+    if request.method == "POST":
+        old = request.POST.get('old_password')
+        new = request.POST.get('newpassword')
+        confirm = request.POST.get('confirmpassword')
+
+        user = request.user
+
+        if not user.check_password(old):
+            messages.error(request, "Old password is incorrect")
+
+        elif new != confirm:
+            messages.error(request, "Passwords do not match")
+
+        else:
+            user.set_password(new)
+            user.save()
+            messages.success(request, "Password changed successfully")
+
+    return render(request, 'changepassword_jobseeker.html')
