@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Board</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #184427;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(1, 119, 46, 0.1);
+            position: relative;
+        }
+
+        /* Logo on left */
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Center nav links */
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">JobBoard</div>
+
+    <div class="nav-links">
+        <a href="{% url 'user_home' %}">Home</a>
+        <a href="#">Jobs</a>
+        <a href="#">Change Password</a>
+        <a href="{% url 'Logout' %}">Logout</a>
+    </div>
+</nav>
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>

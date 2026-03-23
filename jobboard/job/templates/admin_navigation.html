@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Board</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #184427;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(1, 119, 46, 0.1);
+            position: relative;
+        }
+
+        /* Logo on left */
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Center nav links */
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        /* Dropdown container */
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Recruiter button */
+.dropdown > a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    top: 100%;   /* directly below recruiter */
+    left: 0;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+/* Hover effect */
+.dropdown-content a:hover {
+    background-color: #f2f2f2;
+}
+
+/* Show dropdown */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">JobBoard</div>
+
+    <div class="nav-links">
+        <a href="{% url 'user_home' %}">Home</a>
+        <div class="dropdown">
+        <a href="#">Recruiter ▾</a>
+
+        <div class="dropdown-content">
+            <a href="{% url 'recruiters_pending' %}">Pending Recruiters</a>
+            <a href="{% url 'accepted_recruiters' %}">Accepted Recruiters</a>
+            <a href="{% url 'rejected_recruiters' %}">Rejected Recruiters</a>
+            <a href="{% url 'all_recruiters' %}">All Recruiters</a>
+        </div>
+    </div>
+        <a href="{% url 'view_users' %}">View Users</a>
+        <a href="{% url 'changepassword_admin' %}">Change Password</a>
+        <a href="{% url 'Logout' %}">Logout</a>
+    </div>
+</nav>
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>

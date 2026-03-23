@@ -1,0 +1,8 @@
+{% extends 'user_navigation.html' %}
+
+{% block body %}
+<div style="padding:40px;">
+  <h1>Welcome {{ request.user.first_name }}</h1>
+  <p>You are logged in as Job Seeker.</p>
+</div>
+{% endblock %}
